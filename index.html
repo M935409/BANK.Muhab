@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية - بنك MTR</title>
+    <style>
+        /* الإعدادات العامة */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl; /* لضبط الكتابة من اليمين لليسار */
+        }
+
+        
+
+        h1 {
+            font-size: 36px;
+            color: rgb(21, 255, 0);
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        input {
+            margin: 15px 0;
+            padding: 15px;
+            width: 80%;
+            max-width: 400px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border: 2px solid #4CAF50;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 15px;
+            width: 80%;
+            max-width: 400px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(226, 213, 213, 0.1);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* الصفحة الثانية بعد تسجيل الدخول */
+        .home-page {
+            display: none;
+            padding: 20px;
+            text-align: center;
+            background-color: #ffffff;
+            background-image: url('path-to-your-background-image.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #user-name {
+            font-weight: bold;
+            color: #00fe11;
+        }
+
+        /* تعديل ترتيب الأزرار */
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* ترتيب الأزرار بحيث يكون كل صف يحتوي على زرين */
+            gap: 5px; /* تصغير المسافة بين الأزرار */
+            justify-content: center;
+            max-width: 300px; /* تصغير عرض الحاوية */
+            margin: auto;
+        }
+
+        .action-btn {
+            padding: 10px 15px; /* تقليل حجم الأزرار */
+            width: 95%; /* تصغير العرض أكثر */
+            font-size: 14px; /* تصغير حجم الخط */
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background-color: #007B9E;
+        }
+
+        .logout-btn {
+            padding: 12px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #e53935;
+        }
+
+        /* مربع عرض الرصيد */
+        .balance-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        .balance-popup h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .popup-btn {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .popup-btn:hover {
+            background-color: #e53935;
+        }
+
+        /* تحسين الاستجابة للأجهزة الصغيرة */
+        @media (max-width: 500px) {
+            .actions {
+                grid-template-columns: repeat(2, 1fr); /* يجعل الأزرار في صفين حتى في الأجهزة الصغيرة */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!DOCTYPE html>
+    <html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>بنك Muhab</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                text-align: center; 
+                background-color: rgb(112, 83, 42); /* تغيير خلفية الصفحة إلى اللون الأحمر */
+            }
+            .hidden { 
+                display: none; 
+            }
+            .container { 
+                margin-top: 50px; 
+            }
+            input, button { 
+                display: block; 
+                margin: 10px auto; 
+                padding: 10px; 
+            }
+            .action-btn { 
+                margin: 5px; 
+                padding: 10px 20px; 
+            }
+            .social-icons img { 
+                width: 30px; 
+                height: 30px; 
+                margin: 10px; 
+            }
+            .form-container { 
+                text-align: center; 
+                margin-top: 30px; 
+            }
+            /* نمط علامة التحميل */
+            .loader {
+                border: 5px solid #f3f3f3;
+                border-top: 5px solid #3498db;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                margin: 20px auto;
+                display: none;
+            }
+    
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+    
+            .text-box {
+                display: inline-block;
+                padding: 20px;
+                border-radius: 30px;
+                border: 2px solid white;
+                position: relative;
+                overflow: hidden;
+            }
+    
+            h1 {
+                font-size: 1.5em;
+                color: white;
+                padding: 10px;
+            }
+    
+            .money {
+                font-size: 2em;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation: fly 4s ease-in-out infinite;
+            }
+    
+            @keyframes fly {
+                0% {
+                    transform: translate(-50%, -50%);
+                    opacity: 1;
+                }
+                20% {
+                    transform: translate(-50%, -120%) translateX(50px);
+                    opacity: 1;
+                }
+                40% {
+                    transform: translate(-50%, -250%) translateX(100px);
+                    opacity: 0.8;
+                }
+                60% {
+                    transform: translate(-50%, -400%) translateX(150px);
+                    opacity: 0.6;
+                }
+                80% {
+                    transform: translate(-50%, -550%) translateX(200px);
+                    opacity: 0.4;
+                }
+                100% {
+                    transform: translate(-50%, -600%) translateX(250px);
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+    
+        <div class="container" id="login-page">
+            <div class="text-box">
+                <h1>مرحبا بك في بنك Muhab</h1>
+                <!-- الأموال التي تطير من النص -->
+                <div class="money">💸💸💸</div>
+            </div>
+            
+            <form id="login-form">
+                <input type="text" id="login-username" placeholder="اسم المستخدم" required>
+                <input type="password" id="login-password" placeholder="كلمة المرور" required>
+                <button type="submit">تسجيل الدخول</button>
+            </form>
+    
+            <!-- علامة التحميل -->
+            <div class="loader" id="loading-spinner"></div>
+    
+            <!-- زر لتسجيل دخول جديد (ينقل إلى صفحة التسجيل) -->
+            <div class="form-container">
+                <button id="new-user-btn">تسجيل مستخدم جديد</button>
+            </div>
+    
+            <!-- خدمات العملاء -->
+            <div class="social-icons">
+                <h3 style="color: rgb(255, 255, 255);">خدمة العملاء</h3>
+                <a href="https://www.facebook.com/share/1D5rGQPqz3/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="فيسبوك">
+                </a>
+                <a href="https://wa.me/+966561860920" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب">
+                </a>
+            </div>
+        </div>
+    
+    </body>
+    </html>
+    
+
+
+    <!DOCTYPE html>
+    <html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>تطبيق مهاب</title>
+        <style>
+            /* تنسيق الأزرار */
+            .action-btn, .logout-btn {
+                background-color: rgb(212, 91, 73);  /* تغيير اللون إلى الأزرق */
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                border-radius: 50px;
+                margin: 5px;
+                display: inline-block;
+            }
+    
+            /* تنسيق صفحة الشكر */
+            #thank-you-page {
+                display: none;
+                width: 300px;
+                height: 200px;
+                background-color: #f2f2f2;
+                border-radius: 10px;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 0 10px rgba(16, 16, 16, 0.1);
+                margin: 100px auto;
+            }
+    
+            /* تنسيق الصفحة الرئيسية */
+            .container {
+                text-align: center;
+                margin-top: 50px;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <!-- صفحة تسجيل مستخدم جديد -->
+<div class="container hidden" id="register-page">
+    <h1>تسجيل مستخدم جديد</h1>
+    <form id="register-form">
+        <input type="text" id="register-username" placeholder="اسم المستخدم" required>
+        <input type="email" id="register-email" placeholder="البريد الإلكتروني" required>
+        <input type="password" id="register-password" placeholder="كلمة المرور" required>
+        <input type="password" id="confirm-password" placeholder="تأكيد كلمة المرور" required>
+        <button type="submit">تسجيل</button>
+    </form>
+
+    <!-- زر الرجوع إلى صفحة تسجيل الدخول -->
+    <button id="back-to-login" style="background-color: red; color: rgb(255, 255, 255); padding: 10px 20px; border: none; cursor: pointer; border-radius: 50px;">رجوع</button>
+</div>
+
+<script>
+    document.getElementById("back-to-login").addEventListener("click", function() {
+        document.getElementById("register-page").classList.add("hidden"); 
+        document.getElementById("login-page").classList.remove("hidden");
+    });
+</script>
+
+    
+       <!-- الصفحة الرئيسية بعد تسجيل الدخول -->
+<div class="container hidden" id="home-page">
+    <div class="welcome-box">
+        <h1>مرحباً  ! <span id="user-name">صباح الخير</span></h1>
+    </div>
+
+    <!-- صندوق الصور المتحركة -->
+    <div class="image-box">
+        <div class="image-slider">
+            <img src="46547697muhab.png" alt="صورة 1">
+            <img src="d82fef82-d57b-498c-8fcd-d80044aa5987.png" alt="صورة 2">
+        </div>
+    </div>
+   
+    <div class="actions">
+        <button class="action-btn" id="balance-btn">تفاصيل الحساب 🏧 </button>
+        <button class="action-btn" id="transfer-btn">تحويل الأموال 💸 </button>
+        <button class="action-btn" id="transactions-btn"> المعاملات السابقة 🕛 </button>
+        <button class="action-btn" id="pay-bills-btn">دفع الفواتير🧾</button>
+        <button class="action-btn" id="settings-btn">الإعدادات⚙️ </button>
+    </div>
+    <button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
+</div>
+
+<style>
+    /* تصميم صندوق الترحيب */
+    .welcome-box {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 50px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+    }
+    .welcome-box h1 {
+        font-size: 1.5em;
+        color: #fff;
+    }
+
+    /* تصميم صندوق الصور المتحركة */
+    .image-box {
+        width: 200px;
+        height: 80px;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        background-color: rgba(255, 255, 255, 0.1);
+        position: relative;
+        margin: auto;
+    }
+
+    .image-slider {
+        display: flex;
+        width: 400px; /* عرض الضعف لضمان حركة مستمرة */
+        animation: slide 4s linear infinite;
+    }
+
+    .image-slider img {
+        width: 200px;
+        height: 80px;
+        border-radius: 15px;
+    }
+
+    @keyframes slide {
+        from { transform: translateX(-200px); }
+        to { transform: translateX(200px); }
+    }
+</style>
+
+
+    
+      <!-- صفحة الشكر -->
+<div id="thank-you-page" style="background-color: #ADD8E6; padding: 20px; text-align: center; border-radius: 50px; width: 80%; max-width: 400px; margin: auto;">
+    <h2>شكراً لاستخدامك بنك Muhab</h2>
+    <p> (●'◡'●) </p>
+    <button id="thank-you-btn" style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">موافق</button>
+    <!-- زر الرجوع -->
+    <button id="back-btn" style="background-color: red; color: white; padding: 10px 20px; border: none; border-radius: 50px; cursor: pointer; margin-top: 10px;">
+        رجوع
+    </button>
+</div>
+
+
+<script>
+    document.getElementById("back-btn").addEventListener("click", function() {
+        // إخفاء صفحة الشكر
+        document.getElementById("thank-you-page").style.display = "none";
+        // عرض صفحة الخدمات
+        document.getElementById("home-page").classList.remove("hidden");
+    });
+</script>
+
+<!-- صفحة الخدمات -->
+<div id="home-page" class="container hidden">
+    <h1>مرحباً ! <span id="user-name">صباح الخير</span></h1>
+    <div class="actions">
+        <button class="action-btn" id="balance-btn">تفاصيل الحساب</button>
+        <button class="action-btn" id="transfer-btn">تحويل الأموال</button>
+        <button class="action-btn" id="transactions-btn">المعاملات السابقة</button>
+        <button class="action-btn" id="pay-bills-btn">دفع الفواتير</button>
+        <button class="action-btn" id="settings-btn">الإعدادات</button>
+    </div>
+    <button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
+</div>
+
+    
+        <script>
+            let userData = null;
+    
+            // الانتقال إلى صفحة التسجيل
+            document.getElementById("new-user-btn").addEventListener("click", function() {
+                document.getElementById("login-page").classList.add("hidden");
+                document.getElementById("register-page").classList.remove("hidden");
+            });
+    
+            // العودة إلى صفحة الدخول من صفحة التسجيل
+            document.getElementById("register-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+    
+                const username = document.getElementById("register-username").value;
+                const password = document.getElementById("register-password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+                const email = document.getElementById("register-email").value;
+    
+                // تحقق من تطابق كلمة المرور
+                if (password !== confirmPassword) {
+                    alert("كلمة المرور وتأكيد كلمة المرور غير متطابقين!");
+                    return;
+                }
+    
+                // يمكنك حفظ البيانات هنا في قاعدة بيانات أو في التخزين المحلي (localStorage)
+                localStorage.setItem("username", username);
+                localStorage.setItem("password", password);
+                localStorage.setItem("email", email);
+    
+                alert("تم تسجيل المستخدم بنجاح! يمكنك الآن تسجيل الدخول.");
+    
+                // العودة إلى صفحة الدخول
+                document.getElementById("register-page").classList.add("hidden");
+                document.getElementById("login-page").classList.remove("hidden");
+            });
+    
+            // تسجيل الدخول مع ظهور علامة التحميل
+            document.getElementById("login-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+    
+                const username = document.getElementById("login-username").value;
+                const password = document.getElementById("login-password").value;
+    
+                const storedUsername = localStorage.getItem("username");
+                const storedPassword = localStorage.getItem("password");
+    
+                if (username === storedUsername && password === storedPassword) {
+                    document.getElementById("loading-spinner").style.display = "block"; // إظهار علامة التحميل
+    
+                    setTimeout(() => {
+                        document.getElementById("loading-spinner").style.display = "none"; // إخفاء علامة التحميل بعد ثانيتين
+                        document.getElementById("login-page").classList.add("hidden");
+                        document.getElementById("home-page").classList.remove("hidden");
+                        document.getElementById("user-name").textContent = username;
+                    }, 2000); // تأخير لمدة ثانيتين
+    
+                } else {
+                    alert("اسم المستخدم أو كلمة المرور غير صحيحة!");
+                }
+            });
+    
+            // تسجيل الخروج
+            document.getElementById("logout-btn").addEventListener("click", () => {
+                document.getElementById("home-page").classList.add("hidden");
+                document.getElementById("thank-you-page").style.display = "block"; // إظهار صفحة الشكر
+            });
+    
+            // العودة إلى صفحة تسجيل الدخول بعد الضغط على "موافق"
+            document.getElementById("thank-you-btn").addEventListener("click", () => {
+                document.getElementById("thank-you-page").style.display = "none"; // إخفاء صفحة الشكر
+                document.getElementById("login-page").classList.remove("hidden"); // إظهار صفحة تسجيل الدخول
+            });
+        </script>
+    </body>
+    </html>
+    
+    
+<!-- مربع الدفع -->
+<div class="bills-popup" id="bills-popup">
+    <h2>دفع الفواتير</h2>
+    
+    <button class="popup-btn transfer-btn" data-network="زين">
+        <img src="فروع-زين-الرئيسية-بالرياض.jpg" alt="زين" style="width: 20px; height: 20px; margin-left: 5px;"> 
+        شراء رصيد زين
+    </button>
+    
+    <button class="popup-btn transfer-btn" data-network="أريبا">
+        <img src="0_mtn_logo.jpg" alt="أريبا" style="width: 20px; height: 20px; margin-left: 5px;"> 
+        شراء رصيد أريبا
+    </button>
+    
+    <button class="popup-btn transfer-btn" data-network="سوداني">
+        <img src="rTTYzYyV.jpeg" alt="سوداني" style="width: 20px; height: 20px; margin-left: 5px;"> 
+        شراء رصيد سوداني
+    </button>
+    
+    <button class="popup-btn" id="pay-electricity">
+        <img src="271993617_1679695715550029_140722377533966655_n.png" alt="كهرباء" style="width: 20px; height: 20px; margin-left: 5px;"> 
+        شراء كهرباء
+    </button>
+    
+    <button class="popup-btn" id="close-bills-popup">إغلاق</button>
+</div>
+
+<style>
+    /* تنسيق زر الإغلاق */
+    #close-bills-popup {
+        background-color: red; /* اللون الأحمر */
+        color: white; /* نص الزر باللون الأبيض */
+        border-radius: 25px; /* جعل الزر بيضاوي */
+        padding: 10px 20px; /* تحديد حجم الزر */
+        cursor: pointer; /* جعل الزر قابل للنقر */
+        border: none; /* إزالة الحدود */
+        transition: background-color 0.3s; /* إضافة تأثير عند تغيير اللون */
+    }
+
+    #close-bills-popup:hover {
+        background-color: darkred; /* تغيير اللون عند التمرير فوق الزر */
+    }
+</style>
+
+<!-- نافذة منبثقة لتحويل الكهرباء -->
+<div id="electricity-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <p style="font-weight: bold;">عذرا...</p> <!-- كلمة عذرا بخط عريض -->
+        <p>سيتوفر ذلك قريبًا</p>
+        <button id="close-electricity-popup">إغلاق</button>
+    </div>
+</div>
+
+<!-- كود JavaScript لجعل النافذة المنبثقة تعمل -->
+<script>
+    document.getElementById("pay-electricity").addEventListener("click", function() {
+        document.getElementById("electricity-popup").style.display = "block";
+    });
+
+    document.getElementById("close-electricity-popup").addEventListener("click", function() {
+        document.getElementById("electricity-popup").style.display = "none";
+    });
+</script>
+
+<!-- تنسيق النافذة المنبثقة -->
+<style>
+    .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(83, 185, 233);
+        padding: 30px; /* زيادة المسافة حول المحتوى لتكبير النافذة */
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        z-index: 1000;
+        width: 300px; /* تحديد عرض أكبر للنافذة */
+    }
+    
+    .popup-content button {
+        margin-top: 10px;
+        padding: 5px 15px;
+        background: red;
+        color: rgb(255, 255, 255);
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+
+
+
+<!-- مربع الدفع -->
+<div class="bills-popup" id="bills-popup">
+    <h2>دفع الفواتير</h2>
+    
+    <button class="popup-btn transfer-btn" data-network="زين">
+        <img src="فروع-زين-الرئيسية-بالرياض.jpg" alt="زين" style="width: 20px; height: 20px; margin-left: 5px;"> 
+        شراء رصيد زين
+    </button>
+    
+    <button class="popup-btn transfer-btn" data-network="أريبا">
+        <img src="0_mtn_logo.jpg" alt="أريبا" style="width: 20px; height: 20px; margin-left: 5px;"> 
+        شراء رصيد أريبا
+    </button>
+    
+    <button class="popup-btn transfer-btn" data-network="سوداني">
+        <img src="rTTYzYyV.jpeg" alt="سوداني" style="width: 20px; height: 20px; margin-left: 5px;"> 
+        شراء رصيد سوداني
+    </button>
+    
+    <button class="popup-btn" id="pay-electricity">
+        <img src="271993617_1679695715550029_140722377533966655_n.png" alt="كهرباء" style="width: 20px; height: 20px; margin-left: 5px;"> 
+        شراء كهرباء
+    </button>
+    
+    <button class="popup-btn" id="close-bills-popup">إغلاق</button>
+</div>
+
+<style>
+    /* تنسيق زر الإغلاق */
+    #close-bills-popup {
+        background-color: red; /* اللون الأحمر */
+        color: white; /* نص الزر باللون الأبيض */
+        border-radius: 25px; /* جعل الزر بيضاوي */
+        padding: 10px 20px; /* تحديد حجم الزر */
+        cursor: pointer; /* جعل الزر قابل للنقر */
+        border: none; /* إزالة الحدود */
+        transition: background-color 0.3s; /* إضافة تأثير عند تغيير اللون */
+    }
+
+    #close-bills-popup:hover {
+        background-color: darkred; /* تغيير اللون عند التمرير فوق الزر */
+    }
+</style>
+
+<!-- نافذة منبثقة لتحويل الكهرباء -->
+<div id="electricity-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <p style="font-weight: bold;">عذرا...</p> <!-- كلمة عذرا بخط عريض -->
+        <p>سيتوفر ذلك قريبًا</p>
+        <button id="close-electricity-popup">إغلاق</button>
+    </div>
+</div>
+
+<!-- كود JavaScript لجعل النافذة المنبثقة تعمل -->
+<script>
+    document.getElementById("pay-electricity").addEventListener("click", function() {
+        document.getElementById("electricity-popup").style.display = "block";
+    });
+
+    document.getElementById("close-electricity-popup").addEventListener("click", function() {
+        document.getElementById("electricity-popup").style.display = "none";
+    });
+</script>
+
+<!-- تنسيق النافذة المنبثقة -->
+<style>
+    .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(83, 185, 233);
+        padding: 30px; /* زيادة المسافة حول المحتوى لتكبير النافذة */
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        z-index: 1000;
+        width: 300px; /* تحديد عرض أكبر للنافذة */
+    }
+    
+    .popup-content button {
+        margin-top: 10px;
+        padding: 5px 15px;
+        background: red;
+        color: rgb(255, 255, 255);
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+
+<!-- مربع إدخال رقم الهاتف والمبلغ -->
+<div class="transfer-popup" id="transfer-popup">
+    <h2 id="transfer-title">تحويل الأموال</h2>
+    <input type="text" id="phone-number" placeholder="أدخل الرقم" required>
+    <input type="number" id="transfer-amount" placeholder="أدخل المبلغ" required>
+    <button class="popup-btn" id="confirm-transfer" disabled>تأكيد</button> <!-- تعطيل الزر افتراضيًا -->
+    <button class="popup-btn" id="close-transfer-popup">إغلاق</button>
+</div>
+
+<style>
+    /* تنسيق زر الإغلاق */
+    #close-transfer-popup {
+        background-color: red; /* اللون الأحمر */
+        color: white; /* نص الزر باللون الأبيض */
+        border-radius: 25px; /* جعل الزر بيضاوي */
+        padding: 10px 20px; /* تحديد حجم الزر */
+        cursor: pointer; /* جعل الزر قابل للنقر */
+        border: none; /* إزالة الحدود */
+        transition: background-color 0.3s; /* إضافة تأثير عند تغيير اللون */
+    }
+
+    #close-transfer-popup:hover {
+        background-color: darkred; /* تغيير اللون عند التمرير فوق الزر */
+    }
+</style>
+
+<!-- كود JavaScript للتحقق من إدخال البيانات -->
+<script>
+    const phoneNumberInput = document.getElementById("phone-number");
+    const transferAmountInput = document.getElementById("transfer-amount");
+    const confirmButton = document.getElementById("confirm-transfer");
+
+    // التحقق من الحقول
+    function validateFields() {
+        const phoneNumber = phoneNumberInput.value.trim();
+        const transferAmount = transferAmountInput.value.trim();
+
+        // تفعيل الزر فقط إذا كانت الحقول غير فارغة
+        if (phoneNumber !== "" && transferAmount !== "") {
+            confirmButton.disabled = false;
+        } else {
+            confirmButton.disabled = true;
+        }
+    }
+
+    // إضافة حدث للتحقق من الحقول عند التغيير
+    phoneNumberInput.addEventListener("input", validateFields);
+    transferAmountInput.addEventListener("input", validateFields);
+</script>
+
+<!-- مربع عرض تفاصيل العملية -->
+<div class="confirmation-popup" id="confirmation-popup">
+    <h2>تفاصيل العملية</h2>
+    <p id="transaction-details"></p>
+    <button class="popup-btn" id="confirm-operation">تأكيد العملية</button>
+    <button class="popup-btn" id="close-confirmation-popup">إغلاق</button>
+</div>
+
+<!-- مربع تأكيد التحويل -->
+<div class="success-popup" id="success-popup">
+    <h2>تم بنجاح✔️</h2>
+    <p id="success-details"></p>
+    <button class="popup-btn" id="close-success-popup">إغلاق</button>
+</div>
+
+<!-- مربع عرض تفاصيل العملية -->
+<div class="confirmation-popup" id="confirmation-popup">
+    <h2>تفاصيل العملية</h2>
+    <p id="transaction-details"></p>
+    <button class="popup-btn" id="confirm-operation">تأكيد العملية</button>
+    <button class="popup-btn" id="close-confirmation-popup">إغلاق</button>
+</div>
+
+<!-- مربع تأكيد التحويل -->
+<div class="success-popup" id="success-popup">
+    <h2>تم بنجاح✔️</h2>
+    <p id="success-details"></p>
+    <button class="popup-btn" id="close-success-popup">إغلاق</button>
+</div>
+
+
+
+<!-- مربع عرض الرصيد -->
+<div class="balance-popup" id="balance-popup">
+    <h2 style="color: rgb(9, 11, 160);">رقم الأيبان:</h2>
+    <h2 id="iban-text" style="color: rgb(48, 16, 3); display: inline-block;">SD23 4567 8910 1112 1314 1516</h2>
+
+    <!-- زر النسخ -->
+    <button class="copy-btn" onclick="copyIban()">📋 نسخ الأيبان</button>
+
+    <!-- عنصر مخفي للنسخ -->
+    <textarea id="hidden-textarea" style="position: absolute; left: -9999px;"></textarea>
+
+    <!-- رسالة التأكيد -->
+    <div id="copy-message">تم النسخ بنجاح</div>
+
+    <h2 style="color: rgb(9, 11, 160); margin-top: 10px;">رصيدك الحالي:</h2>
+    <h2 id="balance-amount" style="color: rgb(48, 16, 3); display: inline-block;">10,000 SDG</h2>
+    
+    <!-- زر إخفاء المبلغ وتحويله إلى نجوم -->
+    <button class="toggle-amount-btn" onclick="toggleBalance()">👁️ إخفاء المبلغ</button>
+
+    <!-- زر الإغلاق -->
+    <button class="close-btn" id="close-popup">إغلاق</button>
+</div>
+
+<style>
+    .copy-btn {
+        font-size: 14px;
+        background: green;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        width: 120px;
+        height: 35px;
+        display: block;
+        margin: 8px auto;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .copy-btn:hover {
+        background: darkgreen;
+    }
+
+    /* زر الإغلاق بتصميم بيضاوي ولون أحمر */
+    .close-btn {
+        font-size: 14px;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 25px; /* لجعله بيضاوي */
+        width: 120px;
+        height: 40px;
+        display: block;
+        margin: 8px auto;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .close-btn:hover {
+        background: darkred;
+    }
+
+    /* زر إخفاء الرصيد */
+    .toggle-amount-btn {
+        font-size: 14px;
+        background: #ff9800;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        width: 140px;
+        height: 35px;
+        display: block;
+        margin: 8px auto;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .toggle-amount-btn:hover {
+        background: darkorange;
+    }
+
+    #copy-message {
+        display: none;
+        background: rgba(0, 128, 0, 0.9);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 14px;
+        width: fit-content;
+        margin: 5px auto;
+        position: relative;
+        transform: scale(0);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+</style>
+
+<script>
+    function copyIban() {
+        const ibanText = document.getElementById("iban-text").innerText;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(ibanText).then(() => {
+                showCopyMessage();
+            }).catch(() => {
+                fallbackCopyText(ibanText);
+            });
+        } else {
+            fallbackCopyText(ibanText);
+        }
+    }
+
+    function fallbackCopyText(text) {
+        const textarea = document.getElementById("hidden-textarea");
+        textarea.value = text;
+        textarea.select();
+        document.execCommand("copy");
+        showCopyMessage();
+    }
+
+    function showCopyMessage() {
+        let messageBox = document.getElementById("copy-message");
+        messageBox.style.display = "block"; 
+        setTimeout(() => {
+            messageBox.style.transform = "scale(1.3)";
+            messageBox.style.opacity = "1";
+        }, 50);
+
+        setTimeout(() => {
+            messageBox.style.transform = "scale(0)";
+            messageBox.style.opacity = "0";
+            setTimeout(() => {
+                messageBox.style.display = "none";
+            }, 300);
+        }, 2000);
+    }
+
+    // دالة لتبديل إظهار المبلغ بين النص والنجوم
+    function toggleBalance() {
+        var balanceAmount = document.getElementById("balance-amount");
+        var button = document.querySelector(".toggle-amount-btn");
+
+        if (balanceAmount.innerText === "*****") {
+            balanceAmount.innerText = "10,000 SDG"; // استبدال مع المبلغ الفعلي
+            button.innerText = "👁️ إخفاء المبلغ";
+        } else {
+            balanceAmount.innerText = "*****";
+            button.innerText = "👁️‍🗨️👁️‍🗨️ إظهار المبلغ";
+        }
+    }
+</script>
+
+
+<!-- CSS لتنسيق النوافذ -->
+<style>
+    .bills-popup, .transfer-popup, .confirmation-popup, .success-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #eaeaea;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.671);
+        padding: 20px;
+        text-align: center;
+        width: 300px;
+        z-index: 1000;
+    }
+
+    .bills-popup button, .transfer-popup button, .confirmation-popup button, .success-popup button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        background: #007bff;
+        color: rgb(255, 255, 255);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .bills-popup button:hover, .transfer-popup button:hover, .confirmation-popup button:hover, .success-popup button:hover {
+        background: #0056b3;
+    }
+
+    .transfer-popup input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #bababa;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(56, 39, 39, 0.5);
+        z-index: 999;
+    }
+
+    .success-popup {
+        background-color: #1e1818; /* أخضر فاتح */
+        color: #20c446;
+    }
+</style>
+
+<!-- JavaScript لإدارة النوافذ -->
+<script>
+    document.getElementById("pay-bills-btn").addEventListener("click", function () {
+        document.getElementById("bills-popup").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+    });
+
+    document.getElementById("close-bills-popup").addEventListener("click", function () {
+        document.getElementById("bills-popup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    });
+
+    document.getElementById("close-transfer-popup").addEventListener("click", function () {
+        document.getElementById("transfer-popup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    });
+
+    document.getElementById("close-confirmation-popup").addEventListener("click", function () {
+        document.getElementById("confirmation-popup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    });
+
+    document.getElementById("close-success-popup").addEventListener("click", function () {
+        document.getElementById("success-popup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    });
+
+    let transferButtons = document.querySelectorAll(".transfer-btn");
+    transferButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            let network = this.getAttribute("data-network");
+            document.getElementById("transfer-title").innerText = "تحويل رصيد " + network;
+            document.getElementById("transfer-popup").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        });
+    });
+
+    // عند الضغط على زر "تأكيد"
+    document.getElementById("confirm-transfer").addEventListener("click", function () {
+        let phoneNumber = document.getElementById("phone-number").value;
+        let amount = document.getElementById("transfer-amount").value;
+        let network = document.getElementById("transfer-title").innerText.split(" ")[2]; // "زين" أو "أريبا" أو "سوداني"
+        
+        // عرض تفاصيل العملية
+        let transactionDetails = `نوع الرصيد: ${network}<br>المبلغ: ${amount} جنيه سوداني<br>الرقم: ${phoneNumber}`;
+        document.getElementById("transaction-details").innerHTML = transactionDetails;
+        
+        // إظهار نافذة التأكيد
+        document.getElementById("confirmation-popup").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+        
+        // إغلاق نافذة التحويل
+        document.getElementById("transfer-popup").style.display = "none";
+    });
+
+    // عند الضغط على زر "تأكيد العملية"
+    document.getElementById("confirm-operation").addEventListener("click", function () {
+        let phoneNumber = document.getElementById("phone-number").value;
+        let amount = document.getElementById("transfer-amount").value;
+        let network = document.getElementById("transfer-title").innerText.split(" ")[2]; // "زين" أو "أريبا" أو "سوداني"
+        
+        // إضافة التاريخ الحالي
+        let currentDate = new Date().toLocaleString();
+        
+        // عرض تفاصيل عملية التحويل الناجحة
+        let successDetails = `تم تحويل رصيد ${network} بنجاح<br>المبلغ: ${amount} جنيه سوداني<br>الرقم: ${phoneNumber}<br>التاريخ: ${currentDate}`;
+        document.getElementById("success-details").innerHTML = successDetails;
+
+        // إظهار نافذة النجاح
+        document.getElementById("success-popup").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+
+        // إغلاق نافذة التأكيد
+        document.getElementById("confirmation-popup").style.display = "none";
+    });
+
+    let overlay = document.createElement("div");
+    overlay.id = "overlay";
+    overlay.className = "overlay";
+    document.body.appendChild(overlay);
+    overlay.addEventListener("click", function () {
+        document.getElementById("bills-popup").style.display = "none";
+        document.getElementById("transfer-popup").style.display = "none";
+        document.getElementById("confirmation-popup").style.display = "none";
+        document.getElementById("success-popup").style.display = "none";
+        overlay.style.display = "none";
+    });
+</script>
+
+<!-- مربع عرض المعاملات السابقة -->
+<div class="transactions-popup" id="transactions-popup">
+    <h2>المعاملات السابقة</h2>
+    <ul id="transactions-list"></ul>
+    <button class="popup-btn" id="close-transactions-popup">إغلاق</button>
+</div>
+
+<style>
+    /* تنسيق زر الإغلاق */
+    #close-transactions-popup {
+        background-color: red; /* اللون الأحمر */
+        color: white; /* نص الزر باللون الأبيض */
+        border-radius: 25px; /* جعل الزر بيضاوي */
+        padding: 10px 20px; /* تحديد حجم الزر */
+        cursor: pointer; /* جعل الزر قابل للنقر */
+        border: none; /* إزالة الحدود */
+        transition: background-color 0.3s; /* إضافة تأثير عند تغيير اللون */
+    }
+
+    #close-transactions-popup:hover {
+        background-color: darkred; /* تغيير اللون عند التمرير فوق الزر */
+    }
+
+    /* تنسيق مربع المعاملات */
+    .transactions-popup {
+        width: 30%; /* العرض الافتراضي */
+        height: 40vh; /* الطول الافتراضي */
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        overflow-y: auto; /* تمكين التمرير عند الحاجة */
+    }
+
+    /* تنسيق المربع ليبدو مربعًا على الجوال */
+    @media screen and (max-width: 500px) {
+        .transactions-popup {
+            width: 80vw; /* العرض يصبح 80% من عرض الشاشة */
+            height: 80vw; /* الطول يساوي العرض ليبدو مربعًا */
+            padding: 15px; /* تقليل المسافة الداخلية */
+        }
+    }
+
+    /* تنسيق قائمة المعاملات */
+    #transactions-list {
+        max-height: 50vh; /* تحديد أقصى ارتفاع للقائمة */
+        overflow-y: auto;
+    }
+
+    .popup-btn {
+        display: block;
+        margin: 15px auto;
+        padding: 10px 20px;
+        background-color: #4CAF50; /* لون أخضر */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .popup-btn:hover {
+        background-color: #45a049;
+    }
+</style>
+
+
+
+<!-- مربع الإعدادات -->
+<div class="settings-popup" id="settings-popup">
+    <h2 style="font-weight: bold;">سياسة الخصوصية</h2>
+    <p>
+        نحن في [اسم الشركة أو التطبيق] نحرص على حماية خصوصيتك وتوفير تجربة آمنة أثناء استخدامك لتطبيقنا.
+    </p>
+    <h3 style="font-weight: bold;">جمع المعلومات</h3>
+    <p>
+        نقوم بجمع المعلومات التي تقدمها طوعًا مثل اسمك وعنوان بريدك الإلكتروني عند استخدام التطبيق.
+    </p>
+    <h3 style="font-weight: bold;">استخدام المعلومات</h3>
+    <p>
+        نستخدم المعلومات لتحسين خدماتنا والتواصل معك بشأن التحديثات أو العروض الجديدة.
+    </p>
+    <h3 style="font-weight: bold;">حماية المعلومات</h3>
+    <p>
+        نلتزم بحماية بياناتك من الوصول غير المصرح به باستخدام تقنيات أمان متقدمة.
+    </p>
+    <h3 style="font-weight: bold;">الحقوق</h3>
+    <p>
+        يمكننا الوصول إلى معلوماتك الشخصية وتحديثها أو حذفها
+    </p>
+    <h4 style="font-weight: bold;">صنع بواسطة: مهاب طارق</h4>
+    <button class="popup-btn" id="close-settings-popup">إغلاق</button>
+</div>
+
+<style>
+    /* تصغير حجم المربع */
+    .settings-popup {
+        width: 80%; /* تحديد عرض المربع */
+        max-width: 600px; /* تحديد أقصى عرض للمربع */
+        margin: 0 auto; /* محاذاة المربع في منتصف الصفحة */
+        padding: 20px; /* إضافة حواف داخلية */
+        background-color: rgb(255, 255, 255); /* لون خلفية المربع */
+        border-radius: 10px; /* جعل الحواف دائرية قليلاً */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف */
+        overflow-y: auto; /* إضافة التمرير العمودي إذا كانت المحتويات طويلة */
+    }
+
+    /* جعل الزر بيضاويًا */
+    #close-settings-popup {
+        background-color: red; /* اللون الأحمر */
+        color: white; /* نص الزر باللون الأبيض */
+        border-radius: 25px; /* جعل الزر بيضاوي */
+        padding: 10px 20px; /* تحديد حجم الزر */
+        cursor: pointer; /* جعل الزر قابل للنقر */
+        border: none; /* إزالة الحدود */
+        transition: background-color 0.3s; /* إضافة تأثير عند تغيير اللون */
+    }
+
+    #close-settings-popup:hover {
+        background-color: darkred; /* تغيير اللون عند التمرير فوق الزر */
+    }
+</style>
+
+<style>
+    /* تنسيقات سياسة الخصوصية */
+    .settings-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .popup-btn {
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+    }
+
+    h3, h4 {
+        margin-top: 10px;
+    }
+</style>
+
+<script>
+    // زر الإعدادات
+    document.getElementById('settings-btn').addEventListener('click', function() {
+        document.getElementById('settings-popup').style.display = 'block';
+    });
+
+    // زر إغلاق نافذة الإعدادات
+    document.getElementById('close-settings-popup').addEventListener('click', function() {
+        document.getElementById('settings-popup').style.display = 'none';
+    });
+</script>
+
+<style>
+    /* تنسيق زر الإعدادات */
+    #settings-btn {
+        background-color: #dd5858; /* اللون الأخضر */
+        color: white; /* نص الزر باللون الأبيض */
+        border-radius: 25px; /* جعل الزر بيضاوي */
+        padding: 10px 20px; /* تحديد حجم الزر */
+        cursor: pointer; /* جعل الزر قابل للنقر */
+        border: none; /* إزالة الحدود */
+        transition: background-color 0.3s; /* إضافة تأثير عند تغيير اللون */
+    }
+
+    #settings-btn:hover {
+        background-color: #4c7da1; /* تغيير اللون عند التمرير فوق الزر */
+    }
+
+    /* تنسيق زر إغلاق نافذة الإعدادات */
+    #close-settings-popup {
+        background-color: red; /* اللون الأحمر */
+        color: white; /* نص الزر باللون الأبيض */
+        border-radius: 25px; /* جعل الزر بيضاوي */
+        padding: 10px 20px; /* تحديد حجم الزر */
+        cursor: pointer; /* جعل الزر قابل للنقر */
+        border: none; /* إزالة الحدود */
+        transition: background-color 0.3s; /* إضافة تأثير عند تغيير اللون */
+    }
+
+    #close-settings-popup:hover {
+        background-color: rgb(224, 47, 47); /* تغيير اللون عند التمرير فوق الزر */
+    }
+</style>
+
+
+
+<style>
+    /* تنسيقات المربعات المنبثقة */
+    .balance-popup, .transfer-popup, .transactions-popup, .settings-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(117, 197, 193);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 243, 243, 0.3);
+        text-align: center;
+    }
+
+    .popup-btn {
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+    }
+
+    #transactions-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #transactions-list li {
+        background: #f4f4f4;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+    }
+</style>
+
+<script>
+    let transactions = []; // تخزين المعاملات
+
+    // صفحة تسجيل الدخول
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+
+        if (username && password) {
+            document.querySelector('.login-page').style.display = 'none';
+            document.querySelector('.home-page').style.display = 'block';
+            document.getElementById('user-name').innerText = username;
+        }
+    });
+
+    // زر تفاصيل الحساب
+    document.getElementById('balance-btn').addEventListener('click', function() {
+        document.getElementById('balance-popup').style.display = 'block';
+    });
+
+    // زر إغلاق الرصيد
+    document.getElementById('close-popup').addEventListener('click', function() {
+        document.getElementById('balance-popup').style.display = 'none';
+    });
+
+    // زر تسجيل الخروج
+    document.querySelector('.logout-btn').addEventListener('click', function() {
+        document.querySelector('.login-page').style.display = 'flex';
+        document.querySelector('.home-page').style.display = 'none';
+    });
+
+    // زر تحويل الأموال
+    document.getElementById('transfer-btn').addEventListener('click', function() {
+        document.getElementById('transfer-popup').style.display = 'block';
+    });
+
+    // زر إغلاق نافذة تحويل الأموال
+    document.getElementById('close-transfer-popup').addEventListener('click', function() {
+        document.getElementById('transfer-popup').style.display = 'none';
+    });
+
+    // زر تأكيد التحويل
+    document.getElementById('confirm-transfer').addEventListener('click', function() {
+        let accountNumber = document.getElementById('account-number').value;
+        let amount = document.getElementById('amount').value;
+
+        if (accountNumber && amount) {
+            let date = new Date().toLocaleString();
+            let transaction = `تحويل ${amount} جنيه سوداني إلى الحساب ${accountNumber} في ${date}`;
+            transactions.push(transaction);
+            alert('تم التحويل بنجاح!');
+            document.getElementById('transfer-popup').style.display = 'none';
+        } else {
+            alert('يرجى إدخال رقم الحساب والمبلغ.');
+        }
+    });
+
+    // زر عرض المعاملات السابقة
+    document.getElementById('transactions-btn').addEventListener('click', function() {
+        let transactionsList = document.getElementById('transactions-list');
+        transactionsList.innerHTML = '';
+
+        if (transactions.length > 0) {
+            transactions.forEach(function(transaction) {
+                let li = document.createElement('li');
+                li.textContent = transaction;
+                transactionsList.appendChild(li);
+            });
+        } else {
+            transactionsList.innerHTML = '<li>لا توجد معاملات سابقة.</li>';
+        }
+
+        document.getElementById('transactions-popup').style.display = 'block';
+    });
+
+    // زر إغلاق نافذة المعاملات السابقة
+    document.getElementById('close-transactions-popup').addEventListener('click', function() {
+        document.getElementById('transactions-popup').style.display = 'none';
+    });
+
+    // زر الإعدادات
+    document.getElementById('settings-btn').addEventListener('click', function() {
+        document.getElementById('settings-popup').style.display = 'block';
+    });
+
+    // زر إغلاق نافذة الإعدادات
+    document.getElementById('close-settings-popup').addEventListener('click', function() {
+        document.getElementById('settings-popup').style.display = 'none';
+    });
+</script>
