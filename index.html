@@ -380,32 +380,67 @@
 <!-- الستارة السوداء -->
 <div class="side-drawer" id="side-drawer" style="background-color: rgb(105, 142, 165);">
     <!-- اسم البنك -->
-    <h2 style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; text-align: left; padding-left: 20px; margin-bottom: 30px;">Muhab BANK</h2> <!-- أضفنا مسافة تحت اسم البنك -->
+    <h2 style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; text-align: left; padding-left: 20px; margin-bottom: 30px;">Muhab BANK</h2>
 
     <!-- خدمة العملاء داخل الستارة -->
-    <div class="social-icons" style="text-align: left; padding-left: 20px;">
-        <h3 style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; text-align: left; margin-left: 10px; margin-bottom: 15px;">خدمة العملاء</h3>
+    <div class="social-icons" style="text-align: right; padding-right: 20px;">
+        <h3 style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; text-align: right; margin-right: 10px; margin-bottom: 15px;">خدمة العملاء : </h3>
         
         <div class="social-links" style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-start;">
-            <!-- الواتساب مع الجملة في نفس السطر -->
+            <!-- واتساب -->
             <div style="display: flex; justify-content: flex-start; align-items: center; text-align: left; margin-bottom: 10px;">
                 <a href="https://wa.me/+966561860920" target="_blank" style="margin-right: 10px;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="واتساب" style="width: 30px;">
                 </a>
-                <p style="color: rgb(255, 255, 255); margin-right: 10px; font-family: 'Arial', sans-serif; font-size: 16px; text-align: left;">للتواصل عبر الواتساب</p>
+                <p style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; font-size: 16px; text-align: left;">للتواصل عبر الواتساب</p>
             </div>
 
-            <!-- الفيسبوك مع الجملة في نفس السطر -->
+            <!-- فيسبوك -->
             <div style="display: flex; justify-content: flex-start; align-items: center; text-align: left;">
                 <a href="https://www.facebook.com/share/1D5rGQPqz3/" target="_blank" style="margin-right: 10px;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="فيسبوك" style="width: 30px;">
                 </a>
-                <p style="color: rgb(255, 255, 255); margin-right: 10px; font-family: 'Arial', sans-serif; font-size: 16px; text-align: left;">للتواصل عبر فيسبوك</p>
+                <p style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; font-size: 16px; text-align: left;">للتواصل عبر فيسبوك</p>
+            </div>
+
+            <!-- خط فاصل عريض بين فيسبوك وتحميل التطبيق -->
+            <hr style="border: 2px solid #fff; width: 100%; margin: 20px 0;">
+
+            <!-- تحميل التطبيق -->
+            <div style="display: flex; justify-content: flex-start; align-items: center; text-align: left; margin-top: 20px;">
+                <a href="https://drive.google.com/uc?export=download&id=1QEY_wDTBWsjuJ2J2pTxVkic3k9bJexv4" target="_blank" style="margin-right: 10px;">
+                    <img src="th.jpeg" alt="تحميل التطبيق" style="width: 30px; margin-right: 10px;">
+                </a>
+                <p style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; font-size: 16px; text-align: left;">تحميل التطبيق</p>
+                
+                <a href="https://drive.google.com/uc?export=download&id=1QEY_wDTBWsjuJ2J2pTxVkic3k9bJexv4" target="_blank" style="margin-left: 10px;">
+                    <img src="https://free-designer.net/design_img/1127025003.jpg" alt="تحميل التطبيق" class="download-icon">
+                </a>
+            </div>
+
+            <!-- موقع البنك -->
+            <div style="display: flex; justify-content: flex-start; align-items: center; text-align: left; margin-top: 20px;">
+                <a href="https://maps.app.goo.gl/GwcYYhyHoQDMgESS9" target="_blank" style="margin-right: 10px;">
+                    <img src="https://png.pngtree.com/png-clipart/20190925/original/pngtree-beautiful-location-tag-glyph-black-icon-png-image_4972896.jpg" alt="موقع البنك" class="location-icon">
+                </a>
+                <p style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; font-size: 16px; text-align: left;">موقع البنك</p>
             </div>
         </div>
     </div>
 </div>
 
+<!-- CSS لتحريك أيقونة التحميل والموقع -->
+<style>
+    .download-icon, .location-icon {
+        width: 40px;
+        animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+</style>
 
 <!-- صفحة تسجيل الدخول -->
 <div class="container" id="login-page">
@@ -417,7 +452,11 @@
     
     <form id="login-form">
         <input type="text" id="login-username" placeholder="اسم المستخدم" required>
-        <input type="password" id="login-password" placeholder="كلمة المرور" required>
+        <!-- حاوية حقل كلمة المرور مع رمز العين -->
+        <div class="password-container">
+            <input type="password" id="login-password" placeholder="كلمة المرور" required>
+            <span class="toggle-password" onclick="toggleBothLoginPasswords()">👁</span>
+        </div>
         <button type="submit">تسجيل الدخول</button>
     </form>
 
@@ -430,46 +469,110 @@
     </div>
 </div>
 
-
-    <!-- صفحة تسجيل مستخدم جديد -->
-    <div class="container hidden" id="register-page">
-        <h1>تسجيل مستخدم جديد</h1>
-        <form id="register-form">
-            <input type="text" id="register-username" placeholder="اسم المستخدم" required>
-            <input type="email" id="register-email" placeholder="البريد الإلكتروني" required>
+<!-- صفحة تسجيل مستخدم جديد -->
+<div class="container hidden" id="register-page">
+    <h1>تسجيل مستخدم جديد</h1>
+    <form id="register-form">
+        <input type="text" id="register-username" placeholder="اسم المستخدم" required>
+        <input type="email" id="register-email" placeholder="البريد الإلكتروني" required>
+        <!-- حقل كلمة المرور -->
+        <div class="password-container">
             <input type="password" id="register-password" placeholder="كلمة المرور" required>
+            <span class="toggle-password" onclick="toggleBothPasswords()">👁</span>
+        </div>
+        <!-- حقل تأكيد كلمة المرور -->
+        <div class="password-container">
             <input type="password" id="confirm-password" placeholder="تأكيد كلمة المرور" required>
-            <button type="submit">تسجيل</button>
-        </form>
+        </div>
+        <button type="submit">تسجيل</button>
+    </form>
 
-        <!-- زر الرجوع إلى صفحة تسجيل الدخول -->
-        <button id="back-to-login">رجوع</button>
-    </div>
+    <!-- زر الرجوع إلى صفحة تسجيل الدخول -->
+    <button id="back-to-login">رجوع</button>
+</div>
 
-    <script>
-        // وظيفة فتح وإغلاق الستارة السوداء باستخدام نفس زر الهامبرغر
-        document.getElementById("hamburger").addEventListener("click", function() {
-            var sideDrawer = document.getElementById("side-drawer");
-            sideDrawer.classList.toggle("open");
+<script>
+function toggleBothPasswords() {
+    var passwordInput = document.getElementById('register-password');
+    var confirmPasswordInput = document.getElementById('confirm-password');
+    var icon = passwordInput.parentElement.querySelector('.toggle-password');
+    
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        confirmPasswordInput.type = "text";
+        icon.textContent = "👁"; // تغيير الرمز عند الإظهار
+    } else {
+        passwordInput.type = "password";
+        confirmPasswordInput.type = "password";
+        icon.textContent = "👁"; // تغيير الرمز عند الإخفاء
+    }
+}
 
-            // التبديل بين عرض الستارة وإخفائها
-            if (sideDrawer.classList.contains("open")) {
-                sideDrawer.style.display = "block";
-            } else {
-                sideDrawer.style.display = "none";
-            }
-        });
+function toggleBothLoginPasswords() {
+    var passwordInput = document.getElementById('login-password');
+    var icon = passwordInput.parentElement.querySelector('.toggle-password');
+    
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        icon.textContent = "👁"; // تغيير الرمز عند الإظهار
+    } else {
+        passwordInput.type = "password";
+        icon.textContent = "👁"; // تغيير الرمز عند الإخفاء
+    }
+}
+</script>
 
-        // وظيفة الرجوع إلى صفحة تسجيل الدخول
-        document.getElementById("back-to-login").addEventListener("click", function() {
-            document.getElementById("register-page").classList.add("hidden"); 
-            document.getElementById("login-page").classList.remove("hidden");
-        });
-    </script>
+<style>
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    max-width: 300px;  /* تحديد الحد الأقصى للعرض ليكون مشابه لمربع اسم المستخدم */
+    padding: 0.5rem;
+    /* تعديل المسافة لتقليص الحجم وجعله نفس مربع اسم المستخدم */
+    padding-right: 3rem;
+    box-sizing: border-box;
+    border-radius: 30px; /* اجعل المربع بيضاوي الشكل */
+}
+
+.toggle-password {
+    position: absolute;
+    left: 35px; /* وضع الزر في الجهة اليسرى */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.2rem;
+}
+</style>
+
+
+<script>
+    // وظيفة فتح وإغلاق الستارة السوداء باستخدام نفس زر الهامبرغر
+    document.getElementById("hamburger").addEventListener("click", function() {
+        var sideDrawer = document.getElementById("side-drawer");
+        sideDrawer.classList.toggle("open");
+
+        // التبديل بين عرض الستارة وإخفائها
+        if (sideDrawer.classList.contains("open")) {
+            sideDrawer.style.display = "block";
+        } else {
+            sideDrawer.style.display = "none";
+        }
+    });
+
+    // وظيفة الرجوع إلى صفحة تسجيل الدخول
+    document.getElementById("back-to-login").addEventListener("click", function() {
+        document.getElementById("register-page").classList.add("hidden"); 
+        document.getElementById("login-page").classList.remove("hidden");
+    });
+</script>
 </body>
 </html>
 
-    
        <!-- الصفحة الرئيسية بعد تسجيل الدخول -->
 <div class="container hidden" id="home-page">
     <div class="welcome-box">
@@ -541,38 +644,39 @@
 
 
     
-      <!-- صفحة الشكر -->
-<div id="thank-you-page" style="background-color: #ADD8E6; padding: 20px; text-align: center; border-radius: 50px; width: 80%; max-width: 400px; margin: auto;">
+   <!-- صفحة الشكر -->
+<div id="thank-you-page" style="background-color: #ADD8E6; padding: 20px; text-align: center; border-radius: 50px; width: 80%; max-width: 400px; margin: auto; 
+position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     <h2>شكراً لاستخدامك بنك Muhab</h2>
     <p> (●'◡'●) </p>
+    <p>اضغط موافق للخروج الى الصفحة الرئيسية</p>
     <button id="thank-you-btn" style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">موافق</button>
     <!-- زر الرجوع -->
-    <button id="back-btn" style="background-color: rgb(255, 0, 0); color: white; padding: 10px 20px; border: none; border-radius: 50px; cursor: pointer; margin-top: 10px;">
+    <button id="back-btn" style="background-color: rgb(160, 52, 52); color: white; padding: 10px 20px; border: none; border-radius: 50px; cursor: pointer; margin-top: 10px; margin-bottom: 10px;">
         رجوع
     </button>
 </div>
 
-
 <script>
-    document.getElementById("back-btn").addEventListener("click", function() {
-        // إخفاء صفحة الشكر
-        document.getElementById("thank-you-page").style.display = "none";
-        // عرض صفحة الخدمات
-        document.getElementById("home-page").classList.remove("hidden");
-    });
+document.getElementById("back-btn").addEventListener("click", function() {
+    // إخفاء صفحة الشكر
+    document.getElementById("thank-you-page").style.display = "none";
+    // عرض صفحة الخدمات
+    document.getElementById("home-page").classList.remove("hidden");
+});
 </script>
 
 <!-- صفحة الخدمات -->
 <div id="home-page" class="container hidden">
-    <h1>مرحباً ! <span id="user-name">صباح الخير</span></h1>
-    <div class="actions">
-        <button class="action-btn" id="balance-btn">تفاصيل الحساب</button>
-        <button class="action-btn" id="transfer-btn">تحويل الأموال</button>
-        <button class="action-btn" id="transactions-btn">المعاملات السابقة</button>
-        <button class="action-btn" id="pay-bills-btn">دفع الفواتير</button>
-        <button class="action-btn" id="settings-btn">الإعدادات</button>
-    </div>
-    <button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
+<h1>مرحباً ! <span id="user-name">صباح الخير</span></h1>
+<div class="actions">
+    <button class="action-btn" id="balance-btn">تفاصيل الحساب</button>
+    <button class="action-btn" id="transfer-btn">تحويل الأموال</button>
+    <button class="action-btn" id="transactions-btn">المعاملات السابقة</button>
+    <button class="action-btn" id="pay-bills-btn">دفع الفواتير</button>
+    <button class="action-btn" id="settings-btn">الإعدادات</button>
+</div>
+<button class="logout-btn" id="logout-btn">تسجيل الخروج</button>
 </div>
 
     
@@ -776,11 +880,18 @@
 <!-- مربع إدخال رقم الهاتف والمبلغ -->
 <div class="transfer-popup" id="transfer-popup">
     <h2 id="transfer-title">تحويل الأموال</h2>
-    <input type="text" id="phone-number" placeholder="أدخل الرقم" required>
+    <input type="text" id="phone-number" placeholder="أدخل الرقم" required oninput="validatePhoneNumber(this)">
     <input type="number" id="transfer-amount" placeholder="أدخل المبلغ" required>
     <button class="popup-btn" id="confirm-transfer" disabled>التالي</button> <!-- تعطيل الزر افتراضيًا -->
     <button class="popup-btn" id="close-transfer-popup">إغلاق</button>
 </div>
+
+<script>
+    function validatePhoneNumber(input) {
+        // إزالة أي حرف غير رقمي من المدخل
+        input.value = input.value.replace(/[^0-9]/g, '');
+    }
+</script>
 
 <!-- مربع عرض تفاصيل العملية -->
 <div class="confirmation-popup" id="confirmation-popup">
@@ -981,7 +1092,7 @@
         const transferAmount = transferAmountInput.value;
 
         // إعداد تفاصيل العملية
-        transactionDetails.textContent = `نوع الرصيد: ${selectedNetwork || 'غير محدد'}\nالمبلغ: ${transferAmount} جنيه سوداني\nالرقم: ${phoneNumber}`;
+        transactionDetails.textContent = ` نوع الرصيد: ${selectedNetwork || 'غير محدد'}\nالمبلغ: ${transferAmount} جنيه سوداني\nالرقم: ${phoneNumber}`;
 
         // إخفاء مربع الإدخال
         document.getElementById("transfer-popup").style.display = "none";
@@ -1082,7 +1193,7 @@
     /* زر الإغلاق بتصميم بيضاوي ولون أحمر */
     .close-btn {
         font-size: 14px;
-        background: red;
+        background: rgb(229, 39, 39);
         color: white;
         border: none;
         border-radius: 25px; /* لجعله بيضاوي */
